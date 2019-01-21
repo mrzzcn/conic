@@ -1,0 +1,21 @@
+{
+  "name": "conic",
+  "version": "0.0.1",
+  "description": "Coinc Section",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrzzcn/conic.git"
+  },
+  "keywords": [
+    "Conic"
+  ],
+  "author": "Jack <mrzzcn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrzzcn/conic/issues"
+  },
+  "homepage": "https://github.com/mrzzcn/conic#readme"
+}
