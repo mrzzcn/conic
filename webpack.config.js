@@ -6,7 +6,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('./package.json');
 const mode = process.env.NODE_ENV || 'development';
 const config = {
-  entry: './index.ts',
+  entry: {
+    sample: './sample/index.ts'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: `bundle-${packageJson.version}.js`
@@ -47,13 +49,15 @@ console.log(mode)
 if (mode === 'development') {
   config.plugins.push(new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: 'src/index.html',
+    template: 'sample/index.html',
+    chunks: ['sample'],
     inject: true
   }));
 } else {
   config.plugins.push(new HtmlWebpackPlugin({
     filename: '../index.html',
-    template: 'src/index.html',
+    template: 'sample/index.html',
+    chunks: ['sample'],
     inject: true
   }));
 }
