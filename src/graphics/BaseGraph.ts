@@ -1,22 +1,14 @@
 import Drawer from "./Drawer";
 
 interface Drawable {
-  draw();
   drawWith(drawer: Drawer);
 }
 
 class BaseGraph implements Drawable {
-  drawer: Drawer;
-
   /**
    *
    */
-  constructor(drawer: Drawer) {
-    this.drawer = drawer;
-  }
-
-  draw() {
-    this.drawWith(this.drawer);
+  constructor() {
   }
 
   drawWith(drawer: Drawer) {
