@@ -1,17 +1,37 @@
 import CanvasDrawer from '../src/renderer/Canvas';
 import Point from '../src/graphics/Point';
 
-import Circle from '../src/graphics/Circle';
-import Rectangle from '../src/graphics/Rectangle';
+import Circle, { CircleTransformOption } from '../src/graphics/Circle';
+
+function getEventPosition(ev: MouseEvent) {
+  let x;
+  let y;
+  if (ev.layerX || ev.layerX == 0) {
+    x = ev.layerX;
+    y = ev.layerY;
+  } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+    x = ev.offsetX;
+    y = ev.offsetY;
+  }
+  return new Point(x, y);
+}
 
 window.onload = () => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
   console.log(canvas.clientWidth, canvas.clientHeight);
   const drawer = new CanvasDrawer(canvas);
 
-  const circle = new Circle(new Point(0, 0), 100);
+  const circle = new Circle(new Point(150, 210), 100);
   drawer.drawGraph(circle);
 
-  const rectangle = new Rectangle(new Point(-100, 100), new Point(100, -100));
-  drawer.drawGraph(rectangle);
+  canvas.addEventListener('click', (event) => {
+    const bounding = canvas.getBoundingClientRect();
+    const clickPoint = getEventPosition(event);
+    clickPoint.x -= bounding.left;
+    clickPoint.y -= bounding.top;
+
+    const coorPoint = drawer.convertCoordinate(clickPoint, true);
+    console.log(coorPoint);
+    drawer.transform(circle, new CircleTransformOption(coorPoint));
+  });
 }

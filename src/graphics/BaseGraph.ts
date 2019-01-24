@@ -1,19 +1,18 @@
-import Drawer from "./Drawer";
+import Drawer, { TransformOption } from "./Drawer";
 
 interface Drawable {
   drawWith(drawer: Drawer);
 }
 
-class BaseGraph implements Drawable {
+abstract class BaseGraph implements Drawable {
   /**
    *
    */
-  constructor() {
-  }
+  constructor() { }
 
-  drawWith(drawer: Drawer) {
-    console.log(`Drawing ${this} with ${drawer}`);
-  }
+  abstract transform(option: TransformOption<any>, doAnimation: () => void);
+
+  abstract drawWith(drawer: Drawer);
 }
 
 export { Drawable };
