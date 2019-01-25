@@ -25,13 +25,10 @@ window.onload = () => {
   drawer.drawGraph(circle);
 
   canvas.addEventListener('click', (event) => {
-    const bounding = canvas.getBoundingClientRect();
     const clickPoint = getEventPosition(event);
-    clickPoint.x -= bounding.left;
-    clickPoint.y -= bounding.top;
-
+    console.log('clickPoint', clickPoint);
     const coorPoint = drawer.convertCoordinate(clickPoint, true);
-    console.log(coorPoint);
-    drawer.transform(circle, new CircleTransformOption(coorPoint));
+    console.log('clickCoor', coorPoint);
+    drawer.transform(circle, new CircleTransformOption(coorPoint, 0.5));
   });
 }
